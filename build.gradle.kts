@@ -27,7 +27,7 @@ tasks {
         archiveFileName.set("BruhBot.jar")
         manifest {
             attributes(
-                    "Main-Class" to "me.moeszyslak.bruhbot.MainAppKt"
+                    "Main-Class" to "me.moeszyslak.bruhbot.MainKt"
             )
         }
     }
