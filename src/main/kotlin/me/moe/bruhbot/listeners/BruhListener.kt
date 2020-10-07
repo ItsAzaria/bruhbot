@@ -10,6 +10,9 @@ fun onMessageSent(configuration: Configuration) = listeners {
         val guild = message.getGuildOrNull() ?: return@on
         val guildConfig = configuration[guild.id.longValue] ?: return@on
 
+        if (message.author?.isBot == true)
+            return@on
+
         if (message.content.startsWith(guildConfig.prefix))
             return@on
 
@@ -21,6 +24,5 @@ fun onMessageSent(configuration: Configuration) = listeners {
 
         if (message.content.toLowerCase().replace("\\s".toRegex(), "").contains("bruh"))
             message.delete()
-
     }
 }
