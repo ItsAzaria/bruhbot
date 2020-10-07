@@ -65,7 +65,7 @@ fun guildConfigCommands(configuration: Configuration, conversationService: Conve
             configuration[guild!!.id.longValue]?.deleteBruh = deleteBruh
             configuration.save()
 
-            respond("Will now ${if (deleteBruh) "delete" else "not delete"} messages containing bruh**")
+            respond("**Will now ${if (deleteBruh) "delete" else "not delete"} messages containing bruh**")
         }
     }
 }
