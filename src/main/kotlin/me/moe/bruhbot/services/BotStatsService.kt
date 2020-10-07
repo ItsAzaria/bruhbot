@@ -1,7 +1,7 @@
-package me.ddivad.starter.services
+package me.moe.bruhbot.services
 
-import me.ddivad.starter.dataclasses.Configuration
-import me.ddivad.starter.util.timeToString
+import me.moe.bruhbot.dataclasses.Configuration
+import me.moe.bruhbot.util.timeToString
 import me.jakejmattson.discordkt.api.Discord
 import me.jakejmattson.discordkt.api.annotations.Service
 import java.util.*

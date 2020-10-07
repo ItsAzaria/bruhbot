@@ -1,9 +1,9 @@
-package me.ddivad.starter
+package me.moe.bruhbot
 
-import me.ddivad.starter.dataclasses.Configuration
-import me.ddivad.starter.services.BotStatsService
-import me.ddivad.starter.services.PermissionsService
-import me.ddivad.starter.services.requiredPermissionLevel
+import me.moe.bruhbot.dataclasses.Configuration
+import me.moe.bruhbot.services.BotStatsService
+import me.moe.bruhbot.services.PermissionsService
+import me.moe.bruhbot.services.requiredPermissionLevel
 import me.jakejmattson.discordkt.api.dsl.bot
 import me.jakejmattson.discordkt.api.extensions.addInlineField
 import java.awt.Color
@@ -39,11 +39,11 @@ suspend fun main(args: Array<String>) {
 
             field {
                 name = self.tag
-                value = "A template for a DiscordKt bot. Change this for your bot's description."
+                value = "Delete bruh because it's just not needed."
             }
 
             addInlineField("Prefix", it.prefix())
-            addInlineField("Contributors", "ddivad#0001")
+            addInlineField("Contributors", "moe#9999")
 
             val kotlinVersion = KotlinVersion.CURRENT
             val versions = it.discord.versions

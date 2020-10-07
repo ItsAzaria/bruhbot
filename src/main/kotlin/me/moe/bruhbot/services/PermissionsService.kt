@@ -1,18 +1,17 @@
-package me.ddivad.starter.services
+package me.moe.bruhbot.services
 
 import com.gitlab.kordlib.core.entity.Guild
 import com.gitlab.kordlib.core.entity.Member
 import com.gitlab.kordlib.core.entity.User
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
-import me.ddivad.starter.dataclasses.Configuration
+import me.moe.bruhbot.dataclasses.Configuration
 import me.jakejmattson.discordkt.api.annotations.Service
 import me.jakejmattson.discordkt.api.dsl.Command
 
 enum class PermissionLevel {
     Everyone,
     Staff,
-    Administrator,
     GuildOwner,
     BotOwner
 }
@@ -37,23 +36,16 @@ class PermissionsService(private val configuration: Configuration) {
             when {
                 member.isBotOwner() -> PermissionLevel.BotOwner
                 member.isGuildOwner() -> PermissionLevel.GuildOwner
-                member.isAdministrator() -> PermissionLevel.Administrator
                 member.isStaff() -> PermissionLevel.Staff
                 else -> PermissionLevel.Everyone
             }
 
     private fun Member.isBotOwner() = id.value == configuration.ownerId
     private suspend fun Member.isGuildOwner() = isOwner()
-    private suspend fun Member.isAdministrator(): Boolean {
-        val role = configuration[guild!!.id.longValue]?.adminRole.let { role ->
-            guild.roles.filter { it.name == role }.first().id
-        }
-        return roleIds.contains(role)
-    }
 
     private suspend fun Member.isStaff(): Boolean {
-        val role = configuration[guild!!.id.longValue]?.staffRole.let { role ->
-            guild.roles.filter { it.name == role }.first().id
+        val role = configuration[guild.id.longValue]?.staffRole.let { role ->
+            guild.roles.filter { it.id.longValue == role }.first().id
         }
         return roleIds.contains(role)
     }

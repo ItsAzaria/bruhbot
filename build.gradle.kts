@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-group = "me.ddivad"
+group = "me.moe"
 version = "0.0.1"
-description = "judgebot"
+description = "bruhbot"
 
 plugins {
     kotlin("jvm") version "1.4.10"
@@ -17,8 +17,6 @@ repositories {
 
 dependencies {
     implementation("me.jakejmattson:DiscordKt:0.20.0")
-    implementation("org.litote.kmongo:kmongo-coroutine:4.1.2")
-    implementation("joda-time:joda-time:2.10.6")
 }
 
 tasks.withType<KotlinCompile> {

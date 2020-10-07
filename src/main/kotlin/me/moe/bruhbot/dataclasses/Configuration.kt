@@ -1,4 +1,4 @@
-package me.ddivad.starter.dataclasses
+package me.moe.bruhbot.dataclasses
 
 import com.gitlab.kordlib.core.entity.Guild
 import com.gitlab.kordlib.core.entity.Role
@@ -12,15 +12,12 @@ data class Configuration(
     operator fun get(id: Long) = guildConfigurations[id]
     fun hasGuildConfig(guildId: Long) = guildConfigurations.containsKey(guildId)
 
-    fun setup(guild: Guild, prefix: String, adminRole: Role, staffRole: Role, logging: LoggingConfiguration) {
+    fun setup(guild: Guild, prefix: String, staffRole: Role) {
         if (guildConfigurations[guild.id.longValue] != null) return
 
         val newConfiguration = GuildConfiguration(
-                guild.id.value,
                 prefix,
-                staffRole.id.value,
-                adminRole.id.value,
-                logging
+                staffRole.id.longValue
         )
         guildConfigurations[guild.id.longValue] = newConfiguration
         save()
@@ -28,17 +25,7 @@ data class Configuration(
 }
 
 data class GuildConfiguration(
-        val id: String = "",
-        var prefix: String = "j!",
-        var staffRole: String = "",
-        var adminRole: String = "",
-        var loggingConfiguration: LoggingConfiguration = LoggingConfiguration(),
-)
-
-data class LoggingConfiguration(
-        var alertChannel: String = "",
-        var loggingChannel: String = "insert_id",
-        var logRoles: Boolean = true,
-        var logInfractions: Boolean = true,
-        var logPunishments: Boolean = true
+        var prefix: String,
+        var staffRole: Long,
+        var deleteBruh: Boolean = true
 )
